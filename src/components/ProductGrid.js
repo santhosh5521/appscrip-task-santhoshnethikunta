@@ -10,6 +10,10 @@ export default function ProductGrid({ products, showFilters }) {
     );
   };
 
+  if (!products || products.length === 0) {
+    return <p style={{ padding: '40px' }}>No products found.</p>;
+  }
+
   return (
     <section
       className={`product-grid ${showFilters ? 'product-grid--with-sidebar' : 'product-grid--full'}`}
@@ -18,11 +22,15 @@ export default function ProductGrid({ products, showFilters }) {
       {products.map((product, idx) => (
         <article key={product.id} className="product-card">
           <div className="product-card__image-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.image}
               alt={`${product.title} - artisan product at mettā muse`}
               className="product-card__image"
               loading={idx < 4 ? 'eager' : 'lazy'}
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
             />
             {idx === 0 && (
               <span className="product-card__badge product-card__badge--new">
