@@ -153,19 +153,36 @@ export default function Home({ products }) {
   );
 }
 
-// Changed to getStaticProps — works reliably on Netlify
 export async function getStaticProps() {
+  const fallbackProducts = [
+    { id: 1, title: 'Recycled Backpack', price: 109.95, category: "men's clothing", image: 'https://fakestoreapi.com/img/81fAn5TBuL._AC_UY879_.jpg' },
+    { id: 2, title: 'Casual Dress', price: 22.3, category: "women's clothing", image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg' },
+    { id: 3, title: 'Cotton T-Shirt', price: 55.99, category: "men's clothing", image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg' },
+    { id: 4, title: 'Gold Bracelet', price: 695, category: 'jewelery', image: 'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_FMwebp_QL65_.jpg' },
+    { id: 5, title: 'Fjallraven Backpack', price: 109.95, category: "men's clothing", image: 'https://fakestoreapi.com/img/81fAn5TBuL._AC_UY879_.jpg' },
+    { id: 6, title: 'Mens Casual Slim Fit', price: 15.99, category: "men's clothing", image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg' },
+    { id: 7, title: 'Pierced Owl Earrings', price: 10.99, category: 'jewelery', image: 'https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_FMwebp_QL65_.jpg' },
+    { id: 8, title: 'Solid Gold Petite Micropave', price: 168, category: 'jewelery', image: 'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_FMwebp_QL65_.jpg' },
+    { id: 9, title: 'White Gold Diamond Ring', price: 9.99, category: 'jewelery', image: 'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_FMwebp_QL65_.jpg' },
+    { id: 10, title: 'Opna Moisture Wicking Shirt', price: 7.95, category: "women's clothing", image: 'https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg' },
+    { id: 11, title: 'MBJ Womens Solid Short Sleeve', price: 9.85, category: "women's clothing", image: 'https://fakestoreapi.com/img/71HblAHs1xL._AC_UY879_-2.jpg' },
+    { id: 12, title: 'Mens Casual Premium Slim Fit', price: 22.3, category: "men's clothing", image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg' },
+  ];
+
   try {
-    const res = await fetch('https://fakestoreapi.com/products?limit=12');
+    const res = await fetch('https://fakestoreapi.com/products?limit=12', {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (!res.ok) throw new Error('API failed');
+
     const products = await res.json();
-    return {
-      props: { products },
-      revalidate: 60, // ISR — refreshes every 60 seconds
-    };
+    const validProducts = Array.isArray(products) && products.length > 0
+      ? products
+      : fallbackProducts;
+
+    return { props: { products: validProducts }, revalidate: 60 };
   } catch {
-    return {
-      props: { products: [] },
-      revalidate: 60,
-    };
+    return { props: { products: fallbackProducts }, revalidate: 60 };
   }
 }
