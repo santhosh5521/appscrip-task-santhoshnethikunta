@@ -186,3 +186,18 @@ export async function getStaticProps() {
     return { props: { products: fallbackProducts }, revalidate: 60 };
   }
 }
+
+const fallbackProducts = [
+    { id: 1, title: 'Recycled Backpack', price: 109.95, category: "men's clothing", image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400' },
+    { id: 2, title: 'Casual Dress', price: 22.3, category: "women's clothing", image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400' },
+    { id: 3, title: 'Cotton T-Shirt', price: 55.99, category: "men's clothing", image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400' },
+    { id: 4, title: 'Gold Bracelet', price: 695, category: 'jewelery', image: 'https://images.unsplash.com/photo-1573408301185-9519f94815b7?w=400' },
+    { id: 5, title: 'Leather Handbag', price: 109.95, category: "women's clothing", image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400' },
+    { id: 6, title: 'Mens Casual Slim Fit', price: 15.99, category: "men's clothing", image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400' },
+    { id: 7, title: 'Silver Earrings', price: 10.99, category: 'jewelery', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400' },
+    { id: 8, title: 'Summer Floral Dress', price: 168, category: "women's clothing", image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400' },
+    { id: 9, title: 'Diamond Ring', price: 9.99, category: 'jewelery', image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400' },
+    { id: 10, title: 'Sports Jacket', price: 7.95, category: "men's clothing", image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400' },
+    { id: 11, title: 'Womens Blouse', price: 9.85, category: "women's clothing", image: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=400' },
+    { id: 12, title: 'Canvas Tote Bag', price: 22.3, category: "women's clothing", image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400' },
+  ];
