@@ -156,7 +156,7 @@ export async function getStaticProps() {
     { id: 1, title: 'Recycled Backpack', price: 109.95, category: "men's clothing", image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400' },
     { id: 2, title: 'Casual Dress', price: 22.3, category: "women's clothing", image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400' },
     { id: 3, title: 'Cotton T-Shirt', price: 55.99, category: "men's clothing", image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400' },
-    { id: 4, title: 'Gold Bracelet', price: 695, category: 'jewelery', image: 'https://images.unsplash.com/photo-1573408301185-9519f94815b7?w=400' },
+    { id: 4, title: 'Gold Bracelet', price: 695, category: 'jewelery', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400' },
     { id: 5, title: 'Leather Handbag', price: 109.95, category: "women's clothing", image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400' },
     { id: 6, title: 'Mens Casual Slim Fit', price: 15.99, category: "men's clothing", image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400' },
     { id: 7, title: 'Silver Earrings', price: 10.99, category: 'jewelery', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400' },
