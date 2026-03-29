@@ -62,8 +62,6 @@ export default function Home({ products }) {
               {showFilters ? '← HIDE FILTER' : '→ SHOW FILTER'}
             </button>
           </div>
-
-          {/* Custom sort dropdown */}
           <div className="sort-dropdown">
             <button
               className="sort-dropdown__btn"
@@ -80,8 +78,6 @@ export default function Home({ products }) {
                     <button
                       className={`sort-dropdown__option ${sortBy === opt.value ? 'sort-dropdown__option--active' : ''}`}
                       onClick={() => { setSortBy(opt.value); setSortOpen(false); }}
-                      role="option"
-                      aria-selected={sortBy === opt.value}
                     >
                       {sortBy === opt.value && <span className="sort-dropdown__check">✓</span>}
                       {opt.label}
@@ -157,12 +153,19 @@ export default function Home({ products }) {
   );
 }
 
-export async function getServerSideProps() {
+// Changed to getStaticProps — works reliably on Netlify
+export async function getStaticProps() {
   try {
     const res = await fetch('https://fakestoreapi.com/products?limit=12');
     const products = await res.json();
-    return { props: { products } };
+    return {
+      props: { products },
+      revalidate: 60, // ISR — refreshes every 60 seconds
+    };
   } catch {
-    return { props: { products: [] } };
+    return {
+      props: { products: [] },
+      revalidate: 60,
+    };
   }
 }
